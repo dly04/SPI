@@ -57,13 +57,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define BUZZER_Pin GPIO_PIN_0
-#define BUZZER_GPIO_Port GPIOA
-#define SPI1_INT_Pin GPIO_PIN_4
-#define SPI1_INT_GPIO_Port GPIOC
-#define SPI1_INT_EXTI_IRQn EXTI4_IRQn
-#define WS2812_Pin GPIO_PIN_8
-#define WS2812_GPIO_Port GPIOA
+#define btn_Pin GPIO_PIN_13
+#define btn_GPIO_Port GPIOC
 
 /* USER CODE BEGIN Private defines */
 

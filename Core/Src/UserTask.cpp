@@ -12,24 +12,17 @@
 #include "gpio.h"
 #include "main.h"
 #include "task.h"
-#include "ws2812.hpp"
 
 StackType_t uxMainTaskStack[configMINIMAL_STACK_SIZE];
 StaticTask_t xMainTaskTCB;
+static bool btn_status = 0;
 void mainTask(void *pvPara)
 {
-}
-
-StackType_t uxEchoTaskStack[256];
-StaticTask_t xEchoTaskTCB;
-void EchoTask(void *pvPara)
-{
-}
-
-StackType_t uxTestTaskStack[256];
-StaticTask_t xTestTaskTCB;
-void TestTask(void *pvPara)
-{
+  while (1)
+  {
+    btn_status = HAL_GPIO_ReadPin(btn_GPIO_Port, btn_Pin);
+    vTaskDelay(1);
+  }
 }
 
 /**
@@ -41,10 +34,4 @@ void startUserTasks()
 
   xTaskCreateStatic(mainTask, "mainTask", configMINIMAL_STACK_SIZE, NULL, 0,
                     uxMainTaskStack, &xMainTaskTCB);
-
-  xTaskCreateStatic(EchoTask, "EchoTask", configMINIMAL_STACK_SIZE, NULL, 0,
-                    uxEchoTaskStack, &xEchoTaskTCB);
-
-  // xTaskCreateStatic(TestTask, "testTask", configMINIMAL_STACK_SIZE, NULL, 0,
-  //                   uxTestTaskStack, &xTestTaskTCB);
 }
