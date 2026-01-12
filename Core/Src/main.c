@@ -91,8 +91,8 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_SPI1_Init();
   MX_TIM15_Init();
+  MX_SPI3_Init();
   /* USER CODE BEGIN 2 */
   // Write the option bytes, !!DO NOT MODIFY!!
   FLASH_OBProgramInitTypeDef pOBInit;

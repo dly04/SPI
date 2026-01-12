@@ -13,15 +13,22 @@
 #include "main.h"
 #include "task.h"
 
+#include "W25Q64.h"
+
 StackType_t uxMainTaskStack[configMINIMAL_STACK_SIZE];
 StaticTask_t xMainTaskTCB;
 static bool btn_status = 0;
+static uint8_t W25Q64_MID = 0;
+static uint16_t W25Q64_DID = 0;
 void mainTask(void *pvPara)
 {
   while (1)
   {
     btn_status = HAL_GPIO_ReadPin(btn_GPIO_Port, btn_Pin);
-    vTaskDelay(1);
+
+    W25Q64ReadID(&W25Q64_MID, &W25Q64_DID);
+
+    vTaskDelay(1000);
   }
 }
 
