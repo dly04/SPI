@@ -26,3 +26,15 @@ void W25Q64ReadID(uint8_t *MID, uint16_t *DID)
 
     HAL_GPIO_WritePin(SPI_NSS_GPIO_Port, SPI_NSS_Pin, GPIO_PIN_SET);
 }
+
+static uint8_t slave_rx[10];
+static uint8_t slave_tx[10];
+void W25Q64BeingRead()
+{
+    status = HAL_SPI_Receive(&hspi3, slave_rx, 2, 1000);
+}
+
+void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)
+{
+    status = HAL_SPI_TransmitReceive_IT(&hspi3, slave_tx, slave_rx, 1);
+}

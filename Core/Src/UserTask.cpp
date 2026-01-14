@@ -22,11 +22,13 @@ static uint8_t W25Q64_MID = 0;
 static uint16_t W25Q64_DID = 0;
 void mainTask(void *pvPara)
 {
+
   while (1)
   {
     btn_status = HAL_GPIO_ReadPin(btn_GPIO_Port, btn_Pin);
 
-    W25Q64ReadID(&W25Q64_MID, &W25Q64_DID);
+    // W25Q64ReadID(&W25Q64_MID, &W25Q64_DID);
+    W25Q64BeingRead();
 
     vTaskDelay(1000);
   }
