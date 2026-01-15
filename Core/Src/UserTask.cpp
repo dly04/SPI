@@ -26,7 +26,7 @@ void mainTask(void *pvPara)
   {
     btn_status = HAL_GPIO_ReadPin(btn_GPIO_Port, btn_Pin);
 
-    W25Q64ReadID(&W25Q64_MID, &W25Q64_DID);
+    pretendCPLD();
 
     vTaskDelay(1000);
   }
